@@ -1,0 +1,34 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.title {
+    font-size: 22px;
+    margin: 20px;
+}
+.delete_btn {
+    background-color: rgb(211, 20, 20);
+    color: aliceblue;
+    width: 70px;
+    height: 44px;
+    font-size: 18px;
+    border-radius: 6px;
+    border: 1px solid white;
+    cursor: pointer;
+}
+.main_table {
+border-collapse: collapse;
+width: 100%;
+font-size:26px;
+margin: 20px;
+}
+th {
+    padding: 20px 220px 20px 0px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.536);
+    border-top: 1px solid rgba(128, 128, 128, 0.536);
+}
+td {
+    padding: 20px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.536);
+}
