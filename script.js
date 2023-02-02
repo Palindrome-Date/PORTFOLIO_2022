@@ -1,59 +1,43 @@
-"use strict"
-// Ստեղծել «Promise», որը ստանալով  նախադասություն` գտնում է  այդ նախադասության մեջի ամենաերկար բառը, փոխանցում առաջ(then), հետո այն սարքել մեծատառ փոխանցել հաջորդին , հետո ստուգել այդ բառը 'PALINDROM' է թե ոչ։Օրինակ ԱՆՆԱ բառը
-console.log("PALINDROM...")
-let promise = new Promise((resolve) => {
-    setTimeout(() => { 
-        const arr = ["Yerevan", "the","capital", "of", "Armenia", "saippuakivikauppias", "palindrom"]
-            resolve(arr)
-        
-    }, 2000)
-})
+const year = document.querySelector('#year')
+const days = document.querySelector('#days')
+const hours = document.querySelector('#hours')
+const minutes = document.querySelector('#minutes')
+const secunds = document.querySelector('#secunds')
+const countdown = document.querySelector('#countdown')
+const ripple = document.querySelector('.lds-ripple')
 
-promise
-.then(word => {
-    let longestWord = word.sort((a,b) => b.length - a.length)
-    return longestWord[0]
-    
-})
-.then(word => {
-    let upperCase = word.toUpperCase()
-    return upperCase
-})
-.then(word => {
-    if(word == word.split("").reverse().join("")) {
-        console.log("Ayo nuyn barn e ete kardanq hakarak")
-    } else {
-        throw new Error("error")
+
+const currentYear = new Date().getFullYear();
+const nextYear = new Date(`January 01 ${currentYear + 1} 00:00:00`);
+
+year.innerText = currentYear + 1;
+
+
+
+function updateCountDown() {
+	
+	const currentTime = new Date();
+	const diff = nextYear - currentTime;
+	
+	const daysLeft = Math.floor(diff / 1000 / 60 / 60 / 24);
+	const hoursLeft = Math.floor(diff / 1000 / 60 / 60) % 24;
+	const minutesLeft = Math.floor(diff / 1000 / 60) % 60;
+	const secundsLeft = Math.floor(diff / 1000) % 60;
+	 console.log({ daysLeft, hoursLeft, minutesLeft, secundsLeft });
+
+	// ցուցադրում ենք էջում
+	days.innerText = daysLeft;
+	hours.innerText = hoursLeft < 10 ? "0" + hoursLeft : hoursLeft;
+	minutes.innerText = minutesLeft < 10 ? "0" + minutesLeft : minutesLeft;
+	secunds.innerText = secundsLeft < 10 ? "0" + secundsLeft : secundsLeft;
 }
-})
-.catch(err => console.error("Voch ayd bar@ PALINDROM che"))
+updateCountDown()
+setInterval(updateCountDown, 1000);
 
-
-// 
-const images = ["https://images.unsplash.com/photo-1519293978507-9c6bb9f82eda?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-"https://images.unsplash.com/photo-1416862291207-4ca732144d83?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1167&q=80",
-"https://images.unsplash.com/photo-1575584239694-a408e5828be4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"]
-
-
-const div = document.querySelector("#box")
-setInterval(() => {
-    let randomColor = Math.trunc(Math.random() * images.length);
-    div.style.backgroundImage = 'url(' + images[randomColor] + ')'
-}, 2000)
-
-
-
-//
-
-
-
-
-
-
-
-
-
-
+setTimeout(() => {
+	countdown.style.display = "flex";
+	ripple.remove()
+}, 1500)
 
 
 
