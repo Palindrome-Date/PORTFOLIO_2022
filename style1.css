@@ -1,0 +1,70 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.grid-container {
+    width: 500px;
+    height: 500px;
+    margin: 40px auto;
+    grid-gap: 10px;
+    display: grid;
+    grid-template-columns:1fr 0.2fr 1fr 0.2fr 1fr ;
+    grid-template-rows:1fr 2fr 1fr;
+    grid-template-areas:"d1 d1 d2 d3 d3"
+                        "d4 d5 d5 d5 d6"
+                        "d7 d7 d8 d9 d9";
+}
+
+.grid-container > div {
+    background-color: deeppink;
+}
+
+.grid-container > div:nth-child(1) {
+    grid-area: d1;
+    border-top-left-radius: 20px;
+    
+}
+
+.grid-container > div:nth-child(2) {
+   grid-area: d2;
+}
+
+.grid-container > div:nth-child(3) {
+    grid-area: d3;
+    border-top-right-radius: 20px;
+    
+}
+
+.grid-container > div:nth-child(4) {
+    grid-area: d4;
+} 
+
+.grid-container > div:nth-child(5) {
+    grid-area: d5;
+}
+
+.grid-container > div:nth-child(6) {
+    grid-area: d6;
+}
+
+.grid-container > div:nth-child(7) {
+    grid-area: d7;
+    border-bottom-left-radius: 20px;
+}
+    
+
+.grid-container > div:nth-child(8) {
+    grid-area: d8;
+}
+
+.grid-container > div:nth-child(9) {
+    grid-area: d9;
+    border-bottom-right-radius: 20px;
+}
