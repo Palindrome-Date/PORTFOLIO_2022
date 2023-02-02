@@ -1,43 +1,78 @@
-const year = document.querySelector('#year')
-const days = document.querySelector('#days')
-const hours = document.querySelector('#hours')
-const minutes = document.querySelector('#minutes')
-const secunds = document.querySelector('#secunds')
-const countdown = document.querySelector('#countdown')
-const ripple = document.querySelector('.lds-ripple')
+const prev = document.getElementById("btn-prev"),
+	next = document.getElementById("btn-next"),
+	slides = document.querySelectorAll(".slide"),
+	dots = document.querySelectorAll(".dot");
 
 
-const currentYear = new Date().getFullYear();
-const nextYear = new Date(`January 01 ${currentYear + 1} 00:00:00`);
-
-year.innerText = currentYear + 1;
+let index = 0; // նախնական / current սլայդի համարը
 
 
 
-function updateCountDown() {
-	
-	const currentTime = new Date();
-	const diff = nextYear - currentTime;
-	
-	const daysLeft = Math.floor(diff / 1000 / 60 / 60 / 24);
-	const hoursLeft = Math.floor(diff / 1000 / 60 / 60) % 24;
-	const minutesLeft = Math.floor(diff / 1000 / 60) % 60;
-	const secundsLeft = Math.floor(diff / 1000) % 60;
-	 console.log({ daysLeft, hoursLeft, minutesLeft, secundsLeft });
-
-	// ցուցադրում ենք էջում
-	days.innerText = daysLeft;
-	hours.innerText = hoursLeft < 10 ? "0" + hoursLeft : hoursLeft;
-	minutes.innerText = minutesLeft < 10 ? "0" + minutesLeft : minutesLeft;
-	secunds.innerText = secundsLeft < 10 ? "0" + secundsLeft : secundsLeft;
+const activeSlide = (n) => {
+	for (const slide of slides) {
+		slide.classList.remove("active")
+	}
+	slides[n].classList.add("active")
 }
-updateCountDown()
-setInterval(updateCountDown, 1000);
 
-setTimeout(() => {
-	countdown.style.display = "flex";
-	ripple.remove()
-}, 1500)
+const activeDots = (n) => {
+	for (const dot of dots) {
+		dot.classList.remove("active")
+	}
+	dots[n].classList.add("active")
+}
+
+
+
+const uppdateSliderAndDots = (index) => {
+	activeSlide(index)
+	activeDots(index)
+}
+
+// եթե հասնենք վերջին/առաջին սսայդին տեղափոխվենք վերջից => սկիզբ և հակառակը  
+const nextSlide = () => {
+	if (index === slides.length - 1) {
+		index = 0;
+		uppdateSliderAndDots(index)
+
+	} else {
+		index++;
+		uppdateSliderAndDots(index)
+	}
+	console.log(index)
+}
+
+const prevSlide = () => {
+	if (index === 0) {
+		index = slides.length - 1;
+		uppdateSliderAndDots(index)
+	} else {
+		index--;
+		uppdateSliderAndDots(index)
+	}
+	console.log(index)
+}
+
+
+//նավիգացիա "dots"-ի օգնությամբ
+// հետևում ենք ամեն մի "dots"-ի "click"-ին և գլխավոր ինդեքսը հավասարացնում ենք կետի ինդեքսին որպեսզի "switch" լինենք հենց այդ սլայդի վրա
+dots.forEach((elem, dotIndex) => {
+	elem.addEventListener("click", () => {
+		index = dotIndex;
+		uppdateSliderAndDots(index)
+	})
+})
+
+next.addEventListener("click", nextSlide)
+prev.addEventListener("click", prevSlide)
+
+
+//ՍԼԱՅԴԵՐԸ ավտոմատ աշխատացնելու համար 
+setInterval(() => {
+	nextSlide()
+}, 5000)
+
+
 
 
 

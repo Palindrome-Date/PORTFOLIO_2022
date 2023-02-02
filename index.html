@@ -1,41 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./css/style.css">
-  <title>Document</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="css/style.css">
+	<title>JS SLIDER</title>
 </head>
 
 <body>
-  <div class="container-wrapper">
-    <h1 class="title">Happy new Year</h1>
-    <div class="year" id="year">2022</div>
-    <div class="countdown" id="countdown">
-      <div class="time">
-        <h2 id="days">00</h2>
-        <small>days</small>
-      </div>
-      <div class="time">
-        <h2 id="hours">00</h2>
-        <small>hours</small>
-      </div>
-      <div class="time">
-        <h2 id="minutes">00</h2>
-        <small>minutes</small>
-      </div>
-      <div class="time">
-        <h2 id="secunds">00</h2>
-        <small>secunds</small>
-      </div>
-    </div>
-    <div class="lds-ripple">
-      <div></div>
-      <div></div>
-    </div>
-  </div>
-  <script src="./js/script.js"></script>
+	<h1 class="title">my own Slider</h1>
+	<div class="flex-wrapper">
+		<div class="slider-wrapper">
+			<div class="slide active">
+				<img src='https://images.unsplash.com/photo-1545622783-b3e021430fee?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1468&q=80'
+					alt='girl'>
+			</div>
+			<div class="slide">
+				<img src='https://images.unsplash.com/photo-1576344333128-4682ea1e9970?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80'
+				alt='girl'>
+			</div>
+			<div class="slide">
+				<img src='https://images.unsplash.com/photo-1481709761765-0876c08d7d26?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
+					alt='girl'>
+			</div>
+			<div id="btn-prev"></div>
+			<div id="btn-next"></div>
+		</div>
+	</div>
+		<div class="dots-wrapper">
+			<span class="dot active"></span>
+			<span class="dot"></span>
+			<span class="dot"></span>
+		</div>
+
+
+	<script src="./js/script.js"></script>
 </body>
+
 </html>
