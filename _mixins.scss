@@ -1,14 +1,5 @@
-@mixin myFlex($justify-content) {
+@mixin myFlex($jusc, $alit) {
     display: flex;
-    justify-content:$justify-content;
+    justify-content: center;
     align-items: center;
-}
-
-@mixin myAnimation($delay) {
-    animation-name: round;
-    animation-duration: 1s;
-    animation-timing-function: cubic-bezier(0,1,0,1);
-    animation-iteration-count: infinite;
-    animation-fill-mode: backwards;
-    animation-delay: $delay;
 }
