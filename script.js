@@ -1,78 +1,44 @@
-const prev = document.getElementById("btn-prev"),
-	next = document.getElementById("btn-next"),
-	slides = document.querySelectorAll(".slide"),
-	dots = document.querySelectorAll(".dot");
+const toggleSwitch = document.querySelector('input[type="checkbox"]');
+const toggleIcon = document.getElementById('toggle-icon');
+const image1 = document.getElementById('image_1');
+const image2 = document.getElementById('image_2');
+const image3 = document.getElementById('image_3');
+const textBox = document.getElementById('text-box');
 
-
-let index = 0; // նախնական / current սլայդի համարը
-
-
-
-const activeSlide = (n) => {
-	for (const slide of slides) {
-		slide.classList.remove("active")
-	}
-	slides[n].classList.add("active")
+// Dark or Light
+function imageMode(params) {
+	image1.src = `img/undraw_conceptual_${params}.svg`;
+	image2.src = `img/undraw_contempla_${params}.svg`;
+	image3.src = `img/undraw_feeling_pro_${params}.svg`;
 }
 
-const activeDots = (n) => {
-	for (const dot of dots) {
-		dot.classList.remove("active")
-	}
-	dots[n].classList.add("active")
+function lightMode() {
+	nav.style.backgroundColor = setColor(255);
+	textBox.style.backgroundColor = setColor(0);
+	toggleIcon.children[0].textContent = "Light Mode";
+	toggleIcon.children[1].classList.replace('fa-moon', 'fa-sun');
+	imageMode('dark');
+}
+
+function darkMode() {
+	nav.style.backgroundColor = setColor(0);
+	textBox.style.backgroundColor = setColor(255);
+	toggleIcon.children[0].textContent = "Dark Mode";
+	toggleIcon.children[1].classList.replace('fa-sun', 'fa-moon');
+	imageMode('light');
 }
 
 
-
-const uppdateSliderAndDots = (index) => {
-	activeSlide(index)
-	activeDots(index)
-}
-
-// եթե հասնենք վերջին/առաջին սսայդին տեղափոխվենք վերջից => սկիզբ և հակառակը  
-const nextSlide = () => {
-	if (index === slides.length - 1) {
-		index = 0;
-		uppdateSliderAndDots(index)
-
+function switchFunction(event) {
+	if (event.target.checked) {
+		document.documentElement.setAttribute('data-theme', 'dark');
+		darkMode();
 	} else {
-		index++;
-		uppdateSliderAndDots(index)
+		document.documentElement.setAttribute('data-theme', 'light');
+		lightMode();
 	}
-	console.log(index)
 }
-
-const prevSlide = () => {
-	if (index === 0) {
-		index = slides.length - 1;
-		uppdateSliderAndDots(index)
-	} else {
-		index--;
-		uppdateSliderAndDots(index)
-	}
-	console.log(index)
+function setColor(n){
+	return `rgb(${n} ${n} ${n} / 50%)`
 }
-
-
-//նավիգացիա "dots"-ի օգնությամբ
-// հետևում ենք ամեն մի "dots"-ի "click"-ին և գլխավոր ինդեքսը հավասարացնում ենք կետի ինդեքսին որպեսզի "switch" լինենք հենց այդ սլայդի վրա
-dots.forEach((elem, dotIndex) => {
-	elem.addEventListener("click", () => {
-		index = dotIndex;
-		uppdateSliderAndDots(index)
-	})
-})
-
-next.addEventListener("click", nextSlide)
-prev.addEventListener("click", prevSlide)
-
-
-//ՍԼԱՅԴԵՐԸ ավտոմատ աշխատացնելու համար 
-setInterval(() => {
-	nextSlide()
-}, 5000)
-
-
-
-
-
+toggleSwitch.addEventListener('change', switchFunction);
