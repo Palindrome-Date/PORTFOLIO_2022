@@ -1,0 +1,55 @@
+.Users {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    position: relative;
+    margin-top: 30px;
+
+   
+    &-Item {
+        flex-basis: 45%;
+        border: 2px solid #cecece;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all .3s;
+        padding: 15px 10px;
+       display: flex;
+      
+      
+        &:hover {
+            transform: translateY(-10px);
+            transition: all .3s;
+            box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+        }
+
+        &-Info {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            &-Name {
+              margin-bottom: 10px;
+              font-size: 24px;
+              color: #6361f1;
+              font-weight: 900;
+            }
+
+            div {
+                span {
+                    color: #fc8600;
+                }
+            }
+    }
+
+        &-Icon {
+         border-top: 1px solid #001aff;
+         font-size: 120px;
+         color: #cecece;
+         width: 50%;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+        }
+    }
+}
